@@ -1,0 +1,27 @@
+
+\documentclass[tikz,convert={outfile=\jobname.svg}]{standalone}
+%\usetikzlibrary{...}% tikz package already loaded by 'tikz' option
+\usepackage[siunitx]{circuitikz}
+\begin{document}
+  \begin{circuitikz}
+    \ctikzset{tripoles/mos style/arrows}
+    \draw
+    (0,0) node[npn](m1) {}
+    (m1.drain) to [R,l_=${R_3}$] (0,4) node[tground]{}
+    (m1.source) to [R,l=${R_2}$] (0,-3) node[sground]{}
+    (0,0.8) to[short,*-o] (0.5,0.8)
+    (0,-0.8) to[short,*-o] (0.5,-0.8)
+    (0.5,0.8) to[open,l=${\theta}$] (0.5,-0.8)
+    (0,0.8) to[short,-o] (-0.3,0.8)
+    (-1,0) to[short,*-o] (-1,0.3) node[anchor=south,yshift=0.2cm,xshift=0.2cm] {$\mu$}
+    (0,-0.8) to[short,-o] (-0.3,-0.8)
+    (-1,0) to[short,-o] (-1,-0.3) node[anchor=north,yshift=-0.2cm,xshift=0.2cm] {$\pi$}
+    %node[anchor=south]{$v_{out}$}
+    %(m1.gate) to[short,-o] (-1.5,0) node[anchor=east]{$v_{in}$}
+    (m1.gate) to[R,l_=${R_1}$] (-4, 0) -- (-4,-3) node[sground]{}
+    %(-2,0) to[short,*-] (-2, 0.8) to[C,l=$C_{\mu}$] (0,0.8)
+    %(-2,0) to[C,l=${C_{\pi}}$] (-2,-1.5) node[sground]{}
+    %% (1,0.8) to[C,*-,l=${C_{L}}$] (1,-1.5) node[sground]{}
+    ;
+  \end{circuitikz}
+\end{document}

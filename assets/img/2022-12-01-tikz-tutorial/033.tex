@@ -1,0 +1,16 @@
+\documentclass[tikz]{standalone}
+\begin{document}
+\begin{tikzpicture}[scale=3]
+  \clip (-0.1,-0.2) rectangle (1.1,1.51);
+  \draw[step=.5cm,gray,very thin] (-1.4,-1.4) grid (1.4,1.4);
+  \filldraw[fill=green!20,draw=green!50!black] (0,0) -- (3mm,0mm)
+  arc [start angle=0, end angle=30, radius=3mm] -- cycle;
+  \draw[->] (-1.5,0) -- (1.5,0);
+  \draw[->] (0,-1.5) -- (0,1.5);
+  \draw (0,0) circle [radius=1cm];
+  \foreach \x in {-1cm,-0.5cm,1cm}
+  \draw (\x,-1pt) -- (\x,1pt);
+  \foreach \y in {-1cm,-0.5cm,0.5cm,1cm}
+  \draw (-1pt,\y) -- (1pt,\y);
+\end{tikzpicture}
+\end{document}

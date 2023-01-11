@@ -1,0 +1,25 @@
+\documentclass[tikz,convert={outfile=\jobname.svg}]{standalone}
+%\usetikzlibrary{...}% tikz package already loaded by 'tikz' option
+\usepackage[siunitx]{circuitikz}
+\usetikzlibrary{positioning}
+
+\begin{document}
+
+\tikzstyle{block} = [draw, rectangle, minimum height=3em, minimum width=6em]
+\tikzstyle{vco} = [draw, circle, minimum width=3em]
+
+
+\begin{tikzpicture}
+  \node [block] (pfd-cp) {PFD/CP};
+  \node [block, right=1.5cm of pfd-cp] (filter) {Filter};
+  \node [vco, right=1.5cm of filter] (vco) {VCO};
+  \node [block, below=1.5cm of filter] (divider) {$1/N$};
+  \draw [-stealth] (pfd-cp) -- (filter);
+  \draw [-stealth] (filter) -- (vco);
+  \draw [-stealth] (vco) -- ++ (3,0) node[midway](output){} node[midway,above]{$P_{out}$};
+  \draw [-stealth] (output.center) |- (divider);
+  \draw [-stealth] (divider) -- ++ (-6,0) |- ([yshift=-0.2cm]pfd-cp.west) ;
+  %% \draw [stealth-] ([yshift=0.2cm]pfd-cp.west) -- ++ (-2,0) node[midway,above]{$P_{in}$};
+  \draw [stealth-] ([yshift=0.2cm]pfd-cp.west) -- node[above]{$P_{in}$} ++ (-2,0) ;
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,517 @@
+<!DOCTYPE html><html lang="en" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="TikZ Tutorial" /><meta property="og:locale" content="en" /><meta name="description" content="From link." /><meta property="og:description" content="From link." /><link rel="canonical" href="/posts/tikz-tutorial/" /><meta property="og:url" content="/posts/tikz-tutorial/" /><meta property="og:site_name" content="Looooooong" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2022-12-01T11:30:00+00:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="TikZ Tutorial" /><meta name="twitter:site" content="@twitter_username" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-12-03T11:56:08+00:00","datePublished":"2022-12-01T11:30:00+00:00","description":"From link.","headline":"TikZ Tutorial","mainEntityOfPage":{"@type":"WebPage","@id":"/posts/tikz-tutorial/"},"url":"/posts/tikz-tutorial/"}</script><title>TikZ Tutorial | Looooooong</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="Looooooong"><meta name="application-name" content="Looooooong"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get MODE_ATTR() { return "data-mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } static get ID() { return "mode-toggle"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } let self = this; /* always follow the system prefers */ this.sysDarkPrefers.addEventListener("change", () => { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.notify(); }); } /* constructor() */ get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode === ModeToggle.DARK_MODE; } get isLightMode() { return this.mode === ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } setDark() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_ATTR); sessionStorage.removeItem(ModeToggle.MODE_KEY); } /* Notify another plugins that the theme mode has changed */ notify() { window.postMessage({ direction: ModeToggle.ID, message: this.modeStatus }, "*"); } } /* ModeToggle */ const toggle = new ModeToggle(); function flipMode() { if (toggle.hasMode) { if (toggle.isSysDarkPrefer) { if (toggle.isLightMode) { toggle.clearMode(); } else { toggle.setLight(); } } else { if (toggle.isDarkMode) { toggle.clearMode(); } else { toggle.setDark(); } } } else { if (toggle.isSysDarkPrefer) { toggle.setLight(); } else { toggle.setDark(); } } toggle.notify(); } /* flipMode() */ </script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> </a></div><div class="site-title mt-3"> <a href="/">Looooooong</a></div><div class="site-subtitle font-italic">A text-focused Jekyll theme</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <button class="mode-toggle btn" aria-label="Switch Mode"> <i class="fas fa-adjust"></i> </button> <span class="icon-border"></span> <a href="https://github.com/github_username" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/twitter_username" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['helong_ms','outlook.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper"><div id="topbar" class="container d-flex align-items-center justify-content-between h-100 pl-3 pr-3 pl-md-4 pr-md-4"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>TikZ Tutorial</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper" class="d-flex justify-content-center"><div id="main" class="container pl-xl-4 pr-xl-4"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-9 pr-xl-4"><div class="post pl-1 pr-1 pl-md-2 pr-md-2"><h1 data-toc-skip>TikZ Tutorial</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1669894200" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Dec 1, 2022 </em> </span> <span> Updated <em class="" data-ts="1670068568" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Dec 3, 2022 </em> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://twitter.com/username">Long</a> </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2433 words"> <em>13 min</em> read</span></div></div></div><div class="post-content"><p>From <a href="https://www.bu.edu/math/files/2013/08/tikzpgfmanual.pdf">link</a>.</p><p>The doc can also be invoked by <code class="language-plaintext highlighter-rouge">texdoc tikz</code>.</p><p>In LaTex you can use inline code, e.g., <code class="language-plaintext highlighter-rouge">\tikz \draw (0pt,0pt) -- (20pt,6pt);</code> to produce inline figures.</p><h2 id="tutorial-a-picture-for-karls-students"><span class="mr-2">Tutorial: A Picture for Karl’s Students</span><a href="#tutorial-a-picture-for-karls-students" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/034.png" alt="034" data-proofer-ignore></p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="k">\documentclass</span><span class="na">[tikz]</span><span class="p">{</span>standalone<span class="p">}</span>
+<span class="nt">\begin{document}</span>
+<span class="nt">\begin{tikzpicture}</span>
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+<span class="nt">\end{tikzpicture}</span>
+<span class="nt">\end{document}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/001.png" alt="001" data-proofer-ignore></p><h3 id="straight-path-construction"><span class="mr-2">Straight Path Construction</span><a href="#straight-path-construction" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="k">\draw</span> (-1.5,0) -- (1.5,0) -- (0,-1.5) -- (0,1.5);
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/002.png" alt="002" data-proofer-ignore></p><h3 id="curved-path-construction"><span class="mr-2">Curved Path Construction</span><a href="#curved-path-construction" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>For this, TikZ provides a special syntax. One ot two “control points” are needed. The math behind them is not quite trivial, but here is the basic idea: Suppose you are at point \(x\) and the first control point is \(y\). Then the curve will start “going in the direction of \(y\) at \(x\),” that is, the tangent of the curve at \(x\) will point toward \(y\). Next, suppose the curve should end at \(z\) and the second support point is \(w\). Then the curve will, indeed, end at \(z\) and the tangent of the curve at point \(z\) will go through \(w\).</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>
+  <span class="k">\filldraw</span> [gray] (0,0) circle (2pt)
+                   (1,1) circle (2pt)
+                   (2,1) circle (2pt)
+                   (2,0) circle (2pt);
+  <span class="k">\draw</span> (0,0) .. controls (1,1) and (2,1) .. (2,0);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/003.png" alt="003" data-proofer-ignore></p><p>The general syntax for extending a path in a “curved” way is <code class="language-plaintext highlighter-rouge">.. controls</code> <em>&lt;first control point&gt;</em> <code class="language-plaintext highlighter-rouge">and</code> <em>&lt;second control point&gt;</em> <code class="language-plaintext highlighter-rouge">..</code> <em>&lt;end point&gt;</em></p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (-1,0) .. controls (-1,0.555) and (-0.555,1) .. (0,1)
+               .. controls (0.555,1) and (1,0.555) .. (1,0);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/004.png" alt="004" data-proofer-ignore></p><h3 id="circle-path-construction"><span class="mr-2">Circle Path Construction</span><a href="#circle-path-construction" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="k">\draw</span> (0,0) circle (10pt);
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/005.png" alt="005" data-proofer-ignore></p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="k">\draw</span> (0,0) ellipse (20pt and 10pt);
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/006.png" alt="006" data-proofer-ignore></p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="k">\draw</span><span class="na">[rotate=30]</span> (0,0) ellipse (6pt and 3pt);
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/007.png" alt="007" data-proofer-ignore></p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle (1cm);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/008.png" alt="008" data-proofer-ignore></p><h3 id="rectangle-path-construction"><span class="mr-2">Rectangle Path Construction</span><a href="#rectangle-path-construction" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle (1cm);
+  <span class="k">\draw</span> (0,0) rectangle (0.5,0.5);
+  <span class="k">\draw</span> (-0.5,-0.5) rectangle (-1,-1);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/009.png" alt="009" data-proofer-ignore></p><h3 id="grid-path-construction"><span class="mr-2">Grid Path Construction</span><a href="#grid-path-construction" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="k">\draw</span><span class="na">[step=2pt]</span> (0,0) grid (10pt,10pt);
+</pre></table></code></div></div><p>Note how the optional argument for <code class="language-plaintext highlighter-rouge">\draw</code> can be used to specify a grid width (there are also <code class="language-plaintext highlighter-rouge">xstep</code> and <code class="language-plaintext highlighter-rouge">ystep</code> to define the steppings independently).</p><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/010.png" alt="010" data-proofer-ignore></p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle (1cm);
+  <span class="k">\draw</span><span class="na">[step=.5cm]</span> (-1.4,-1.4) grid (1.4,1.4);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/011.png" alt="011" data-proofer-ignore></p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>
+  <span class="k">\draw</span><span class="na">[step=.5cm,gray,very thin]</span> (-1.4,-1.4) grid (1.4,1.4);
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle (1cm);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p>To subdue the grid, Karl adds two more options to the <code class="language-plaintext highlighter-rouge">\draw</code> command that draws the grid. First, he uses the color <code class="language-plaintext highlighter-rouge">gray</code> for the grid lines. Second, he reduces the line width to <code class="language-plaintext highlighter-rouge">very thin</code>. Finally, he swaps the ordering of the commands so that the grid is drawn first and everything else on top.</p><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/012.png" alt="012" data-proofer-ignore></p><h3 id="adding-a-touch-of-style"><span class="mr-2">Adding a Touch of Style</span><a href="#adding-a-touch-of-style" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Instead of the options <code class="language-plaintext highlighter-rouge">gray, very thin</code> Karl could also have said <code class="language-plaintext highlighter-rouge">help lines</code>. <em>Styles</em> are predefined sets of options that can be used to organize how a graphic is drawn.</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>help lines/.style=<span class="p">{</span>color=blue!50,very thin<span class="p">}</span>
+</pre></table></code></div></div><p>The effect of this “style setter” is that in the current scope or environment the ‘help lines’ option has the same effect as <code class="language-plaintext highlighter-rouge">color=blue!50,very thin</code>.</p><p>Normally, styles are defined at the beginning of a picture. However, you may sometimes wish to define a style globally, so that all pictures of your document can use this style. In this situation you can use the <code class="language-plaintext highlighter-rouge">\tikzset</code> command at the beginning of the document as in</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="k">\tikzset</span><span class="p">{</span>help lines/.style=very thin<span class="p">}</span>
+</pre></table></code></div></div><p>To build a hierarchy of styles you can have one style use another. So in order to define a style <code class="language-plaintext highlighter-rouge">Karl's grid</code> that is based on the <code class="language-plaintext highlighter-rouge">grid</code> style Karl could say</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="k">\tikzset</span><span class="p">{</span>Karl's grid/.style=<span class="p">{</span>help lines,color=blue!50<span class="p">}}</span>
+...
+<span class="k">\draw</span><span class="na">[Karl's grid]</span> (0,0) grid (5,5);
+</pre></table></code></div></div><p>Styles are made even more powerful py parameterization. This means that, like other options, styles can also be used with a parameter. For instance, Karl could parameterize his grid so that, by default, it is blue, but he could also use anther color.</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>
+  [Karl's grid/.style =<span class="p">{</span>help lines,color=#1!50<span class="p">}</span>,
+  Karl's grid/.default=blue]
+
+  <span class="k">\draw</span><span class="na">[Karl's grid]</span>     (0,0) grid (1.5,2);
+  <span class="k">\draw</span><span class="na">[Karl's grid=red]</span> (2,0) grid (3.5,2);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><h3 id="drawing-options"><span class="mr-2">Drawing Options</span><a href="#drawing-options" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>There are many options simiar to</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="k">\draw</span><span class="na">[step=.5cm,gray,very thin]</span> (-1.4,-1.4) grid (1.4,1.4);
+</pre></table></code></div></div><p><code class="language-plaintext highlighter-rouge">ultra thin, very thin, thin, semithick, thick, very thick, ultra thick</code>, where <code class="language-plaintext highlighter-rouge">thin</code> is the default thickness.</p><p>Another useful thing is <code class="language-plaintext highlighter-rouge">dashed</code> and <code class="language-plaintext highlighter-rouge">dotted</code>. And also <code class="language-plaintext highlighter-rouge">lossely dashed, densely dashed, loosely dotted, densely dotted</code>.</p><h3 id="arc-path-construction"><span class="mr-2">Arc Path Construction</span><a href="#arc-path-construction" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>
+  <span class="k">\draw</span><span class="na">[step=.5cm,gray,very thin]</span> (-1.4,-1.4) grid (1.4,1.4);
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle [radius=1cm];
+  <span class="k">\draw</span> (3mm,0mm) arc [start angle=0, end angle=30, radius=3mm];
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/013.png" alt="013" data-proofer-ignore></p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>[scale=3]
+<span class="k">\draw</span><span class="na">[step=.5cm,gray,very thin]</span> (-1.4,-1.4) grid (1.4,1.4);
+<span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+<span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+<span class="k">\draw</span> (0,0) circle [radius=1cm];
+<span class="k">\draw</span> (3mm,0mm) arc [start angle=0, end angle=30, radius=3mm];
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/014.png" alt="014" data-proofer-ignore></p><h3 id="clipping-a-path"><span class="mr-2">Clipping a Path</span><a href="#clipping-a-path" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>[scale=3]
+  <span class="k">\clip</span> (-0.1,-0.2) rectangle (1.1,0.75);
+  <span class="k">\draw</span><span class="na">[step=.5cm,gray,very thin]</span> (-1.4,-1.4) grid (1.4,1.4);
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle [radius=1cm];
+  <span class="k">\draw</span> (3mm,0mm) arc [start angle=0, end angle=30, radius=3mm];
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/015.png" alt="015" data-proofer-ignore></p><p>You can also do both at the same time: Draw and clip a path. For this, use the <code class="language-plaintext highlighter-rouge">\draw</code> command and add the clip option. (This is not the whole pecture: You can also use the <code class="language-plaintext highlighter-rouge">\clip</code> command and add the <code class="language-plaintext highlighter-rouge">draw</code> option. Well, that is also not the whole picture: In reality, <code class="language-plaintext highlighter-rouge">\draw</code> is just a shorthand for <code class="language-plaintext highlighter-rouge">\path[draw]</code> and <code class="language-plaintext highlighter-rouge">\clip</code> is a shorthand for <code class="language-plaintext highlighter-rouge">\path[clip]</code> and you could also say <code class="language-plaintext highlighter-rouge">\path[draw,clip]</code>.) Here is an example:</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>[scale=3]
+  <span class="k">\clip</span><span class="na">[draw]</span> (0.5,0.5) circle (.6cm);
+  <span class="k">\draw</span><span class="na">[step=.5cm,gray,very thin]</span> (-1.4,-1.4) grid (1.4,1.4);
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle [radius=1cm];
+  <span class="k">\draw</span> (3mm,0mm) arc [start angle=0, end angle=30, radius=3mm];
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/016.png" alt="016" data-proofer-ignore></p><h3 id="parabola-and-sine-path-construction"><span class="mr-2">Parabola and Sine Path Construction</span><a href="#parabola-and-sine-path-construction" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="k">\draw</span> (0,0) rectangle (1,1) (0,0) parabola (1,1);
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/017.png" alt="017" data-proofer-ignore></p><p>It is also possible to place the bend somewhere else:</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="k">\draw</span><span class="na">[x=1pt,y=1pt]</span> (0,0) parabola bend (4,16) (6,12);
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/018.png" alt="018" data-proofer-ignore></p><p>The operations <code class="language-plaintext highlighter-rouge">sin</code> and <code class="language-plaintext highlighter-rouge">cos</code> add a sine or cosine curve in the interval \([0,\pi/2]\) such that the previous current point is at the start of the curve and the curve ends at the given end point.</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="k">\draw</span><span class="na">[x=1.57ex,y=1ex]</span> (0,0) sin (1,1) cos (2,0) sin (3,-1) cos (4,0)
+                      (0,1) cos (1,0) sin (2,-1) cos (3,0) sin (4,1);
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/019.png" alt="019" data-proofer-ignore></p><h3 id="filling-and-drawing"><span class="mr-2">Filling and Drawing</span><a href="#filling-and-drawing" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>[scale=3]
+  <span class="k">\clip</span> (-0.1,-0.2) rectangle (1.1,0.75);
+  <span class="k">\draw</span><span class="na">[step=.5cm,gray,very thin]</span> (-1.4,-1.4) grid (1.4,1.4);
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle [radius=1cm];
+  <span class="k">\fill</span><span class="na">[green!20!white]</span> (0,0) -- (3mm,0mm)
+    arc [start angle=0, end angle=30, radius=3mm] -- (0,0);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/020.png" alt="020" data-proofer-ignore></p><p>The color <code class="language-plaintext highlighter-rouge">green!20!white</code> means 20% green and 80% white mixed together. Such color expression are possible since TikZ uses Uwe Kern’s <code class="language-plaintext highlighter-rouge">xcolor</code> package, see the documentation of that package for details on color expressions.</p><p>What would have happened, if Karl had not “closed” the path using <code class="language-plaintext highlighter-rouge">--(0,0)</code> at the end? In this case, the path is closed automatically, so this could have been omitted. Indeed, it would even have been better to write the following, instead:</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="k">\fill</span><span class="na">[green!20!white]</span> (0,0) -- (3mm,0mm)
+  arc [start angle=0, end angle=30, radius=3mm] -- cycle;
+</pre></table></code></div></div><p>The <code class="language-plaintext highlighter-rouge">--cycle</code> causes the current path to be closed (actually the current part of the current path) by smoothly joining the first and last point. To appreciate the difference, consider the following example:</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>[line width=5pt]
+  <span class="k">\draw</span> (0,0) -- (1,0) -- (1,1) -- (0,0);
+  <span class="k">\draw</span> (2,0) -- (3,0) -- (3,1) -- cycle;
+  <span class="k">\useasboundingbox</span> (0,1.5); <span class="c">% make bounding box higher</span>
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/021.png" alt="021" data-proofer-ignore></p><p>You can also fill and draw a path at the same time using the <code class="language-plaintext highlighter-rouge">\filldraw</code> command. You can speficy different colors to be used for filling and for stroking.</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>[scale=3]
+  <span class="k">\clip</span> (-0.1,-0.2) rectangle (1.1,0.75);
+  <span class="k">\draw</span><span class="na">[step=.5cm,gray,very thin]</span> (-1.4,-1.4) grid (1.4,1.4);
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle [radius=1cm];
+  <span class="k">\filldraw</span><span class="na">[fill=green!20!white, draw=green!50!black]</span> (0,0) -- (3mm,0mm)
+    arc [start angle=0, end angle=30, radius=3mm] -- cycle;
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/022.png" alt="022" data-proofer-ignore></p><h3 id="shading"><span class="mr-2">Shading</span><a href="#shading" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="k">\shade</span> (0,0) rectangle (2,1) (3,0.5) circle (.5cm);
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/023.png" alt="023" data-proofer-ignore></p><p>The default shading is a smooth transition from gray to white. To specify different colors, you can use options:</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>[rounded corners,ultra thick]
+  <span class="k">\shade</span><span class="na">[top color=yellow,bottom color=black]</span> (0,0) rectangle +(2,1);
+  <span class="k">\shade</span><span class="na">[left color=yellow,right color=black]</span> (3,0) rectangle +(2,1);
+  <span class="k">\shadedraw</span><span class="na">[inner color=yellow,outer color=black,draw=yellow]</span> (6,0) rectangle +(2,1);
+  <span class="k">\shade</span><span class="na">[ball color=green]</span> (9,.5) circle (.5cm);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/024.png" alt="024" data-proofer-ignore></p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>[scale=3]
+  <span class="k">\clip</span> (-0.1,-0.2) rectangle (1.1,0.75);
+  <span class="k">\draw</span><span class="na">[step=.5cm,gray,very thin]</span> (-1.4,-1.4) grid (1.4,1.4);
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle [radius=1cm];
+  <span class="k">\shadedraw</span><span class="na">[left color=gray,right color=green, draw=green!50!black]</span>
+  (0,0) -- (3mm,0mm)
+    arc [start angle=0, end angle=30, radius=3mm] -- cycle;
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/025.png" alt="025" data-proofer-ignore></p><h3 id="specifying-coordinates"><span class="mr-2">Specifying Coordinates</span><a href="#specifying-coordinates" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>There are different ways of specifying coordinates. The easiest way is to say something like <code class="language-plaintext highlighter-rouge">(10pt,2cm)</code>. This means 10pt in \(x\)-direction and 2cm in \(y\)-directions. Alternatively, you can also leave out the units as in <code class="language-plaintext highlighter-rouge">(1,2)</code>, which means “one times the current \(x\)-vector pule twice the current \(y\)-vector”. These vectors default to 1cm.</p><ul><li><code class="language-plaintext highlighter-rouge">(30:1cm)</code> means 1cm in direction 30 degree.<li><code class="language-plaintext highlighter-rouge">+(0cm,1cm)</code> means “1cm upwards from the previous speficied position”.<li><code class="language-plaintext highlighter-rouge">++(2cm,0cm)</code> means “2cm to the right of the previous specified position, making this the new specified position”.</ul><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>[scale=3]
+  <span class="k">\clip</span> (-0.1,-0.2) rectangle (1.1,0.75);
+  <span class="k">\draw</span><span class="na">[step=.5cm,gray,very thin]</span> (-1.4,-1.4) grid (1.4,1.4);
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle [radius=1cm];
+  <span class="k">\shadedraw</span><span class="na">[left color=gray,right color=green, draw=green!50!black]</span>
+  (0,0) -- (3mm,0mm)
+    arc [start angle=0, end angle=30, radius=3mm] -- cycle;
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/025.png" alt="025" data-proofer-ignore></p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>[scale=3]
+  <span class="k">\clip</span> (-0.1,-0.2) rectangle (1.1,0.75);
+  <span class="k">\draw</span><span class="na">[step=.5cm,gray,very thin]</span> (-1.4,-1.4) grid (1.4,1.4);
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle [radius=1cm];
+  <span class="k">\filldraw</span><span class="na">[fill=green!20,draw=green!50!black]</span> (0,0) -- (3mm,0mm)
+    arc [start angle=0, end angle=30, radius=3mm] -- cycle;
+  <span class="k">\draw</span><span class="na">[red,very thick]</span> (30:1cm) -- +(0,-0.5);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/026.png" alt="026" data-proofer-ignore></p><ul><li><code class="language-plaintext highlighter-rouge">(30:1cm |- 0,0)</code> means “the point straight down from <code class="language-plaintext highlighter-rouge">(30:1cm)</code> that lies on the \(x\)-axis”.<li><code class="language-plaintext highlighter-rouge">(&lt;p&gt; |- &lt;q&gt;)</code> means “the intersection of a vertical line through \(p\) and a horizontal line through \(q\)”.</ul><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>[scale=3]
+  <span class="k">\clip</span> (-0.1,-0.2) rectangle (1.1,0.75);
+  <span class="k">\draw</span><span class="na">[step=.5cm,gray,very thin]</span> (-1.4,-1.4) grid (1.4,1.4);
+  <span class="k">\draw</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle [radius=1cm];
+  <span class="k">\filldraw</span><span class="na">[fill=green!20,draw=green!50!black]</span> (0,0) -- (3mm,0mm)
+    arc [start angle=0, end angle=30, radius=3mm] -- cycle;
+  <span class="k">\draw</span><span class="na">[red,very thick]</span> (30:1cm) -- +(0,-0.5);
+  <span class="k">\draw</span><span class="na">[blue,very thick]</span> (30:1cm) ++(0,-0.5) -- (0,0);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/027.png" alt="027" data-proofer-ignore></p><p>To appreciate the difference between <code class="language-plaintext highlighter-rouge">+</code> and <code class="language-plaintext highlighter-rouge">++</code> consider the following example</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre><span class="c">% Example using ++</span>
+<span class="nt">\begin{tikzpicture}</span>
+  <span class="k">\def\rectanglepath</span><span class="p">{</span>-- ++(1cm,0cm) -- ++(0cm,1cm) -- ++(-1cm,0cm) -- cycle<span class="p">}</span>
+  <span class="k">\draw</span> (0,0) <span class="k">\rectanglepath</span>;
+  <span class="k">\draw</span> (1.5,0) <span class="k">\rectanglepath</span>;
+<span class="nt">\end{tikzpicture}</span>
+
+<span class="c">% Example using +</span>
+<span class="nt">\begin{tikzpicture}</span>
+  <span class="k">\def\rectanglepath</span><span class="p">{</span>-- +(1cm,0cm) -- +(1cm,1cm) -- +(0cm,1cm) -- cycle<span class="p">}</span>
+  <span class="k">\draw</span> (0,0) <span class="k">\rectanglepath</span>;
+  <span class="k">\draw</span> (1.5,0) <span class="k">\rectanglepath</span>;
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p>all of this could have been written as</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="k">\draw</span> (0,0) rectangle +(1,1) (1.5,0) rectangle +(1,1);
+</pre></table></code></div></div><h3 id="intersecting-paths"><span class="mr-2">Intersecting Paths</span><a href="#intersecting-paths" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p><code class="language-plaintext highlighter-rouge">(1,{tan(30)})</code>: TikZ’s math engine knows how to compute things like <code class="language-plaintext highlighter-rouge">tan(30)</code>. Note the added braces since, otherwise, TikZ’s parser would think that the first closing parenthesis ends the coordinate (in general, you need to add braces around components of coordinates when these components contain parentheses).</p><li><p><code class="language-plaintext highlighter-rouge">\path</code> command without any options like <code class="language-plaintext highlighter-rouge">draw</code> or <code class="language-plaintext highlighter-rouge">fill</code> creates “invisible” path.</p></ul><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="k">\path</span> [name path=upward line] (1,0) -- (1,1);
+<span class="k">\path</span> [name path=sloped line] (0,0) -- (30:1.5cm); <span class="c">% a bit longer, so that there is an intersection</span>
+
+<span class="c">% (add `\usetikzlibrary{intersections}' after loading tikz in the preamble)</span>
+<span class="k">\draw</span> [name intersections=<span class="p">{</span>of=upward line and sloped line, by=x<span class="p">}</span>]
+  [very thick,orange] (1,0) -- (x);
+</pre></table></code></div></div><h3 id="adding-arrow-tips"><span class="mr-2">Adding Arrow Tips</span><a href="#adding-arrow-tips" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Adds the option <code class="language-plaintext highlighter-rouge">-&gt;</code> to the drawing commands.<li><code class="language-plaintext highlighter-rouge">-&gt;</code> puts arrow tips at the end of the path.<li><code class="language-plaintext highlighter-rouge">&lt;-</code> puts arrow tips at the begining of the path.<li><code class="language-plaintext highlighter-rouge">&lt;-&gt;</code> puts arrow tips at both ends of the path.</ul><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre><td class="rouge-code"><pre><span class="k">\usetikzlibrary</span> <span class="p">{</span>intersections<span class="p">}</span>
+<span class="nt">\begin{tikzpicture}</span>[scale=3]
+  <span class="k">\clip</span> (-0.1,-0.2) rectangle (1.1,1.51);
+  <span class="k">\draw</span><span class="na">[step=.5cm,gray,very thin]</span> (-1.4,-1.4) grid (1.4,1.4);
+  <span class="k">\draw</span><span class="na">[-&gt;]</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span><span class="na">[-&gt;]</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle [radius=1cm];
+  <span class="k">\filldraw</span><span class="na">[fill=green!20,draw=green!50!black]</span> (0,0) -- (3mm,0mm)
+    arc [start angle=0, end angle=30, radius=3mm] -- cycle;
+  <span class="k">\draw</span><span class="na">[red,very thick]</span>
+  (30:1cm) -- +(0,-0.5);
+  <span class="k">\draw</span><span class="na">[blue,very thick]</span>
+  (30:1cm) ++(0,-0.5) -- (0,0);
+  <span class="k">\path</span> [name path=upward line] (1,0) -- (1,1);
+  <span class="k">\path</span> [name path=sloped line] (0,0) -- (30:1.5cm);
+  <span class="k">\draw</span> [name intersections=<span class="p">{</span>of=upward line and sloped line, by=x<span class="p">}</span>]
+  [very thick,orange] (1,0) -- (x);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/028.png" alt="028" data-proofer-ignore></p><ul><li>You canadd arrow tips only to a sinle open “line”. For example, you cannot add tips to, say, a rectangle or circuit. However, you can add arrow tips to curved paths and to paths that have several segments.</ul><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>
+  <span class="k">\draw</span> [&lt;-&gt;] (0,0) arc [start angle=180, end angle=30, radius=10pt];
+  <span class="k">\draw</span> [&lt;-&gt;] (1,0) -- (1.5cm,10pt) -- (2cm,0pt) -- (2.5cm,10pt);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><ul><li>There are different arrow styles. (see section 106.)</ul><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="k">\usetikzlibrary</span> <span class="p">{</span>arrows.meta<span class="p">}</span>
+<span class="nt">\begin{tikzpicture}</span>[&gt;=Stealth]
+  <span class="k">\draw</span> [-&gt;] (0,0) arc [start angle=180, end angle=30, radius=10pt];
+  <span class="k">\draw</span> [&lt;&lt;-,very thick] (1,0) -- (1.5cm,10pt) -- (2cm,0pt) -- (2.5cm,10pt);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/029.png" alt="029" data-proofer-ignore></p><h3 id="scoping"><span class="mr-2">Scoping</span><a href="#scoping" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>[ultra thick]
+  <span class="k">\draw</span> (0,0) -- (0,1);
+  <span class="nt">\begin{scope}</span>[thin]
+    <span class="k">\draw</span> (1,0) -- (1,1);
+    <span class="k">\draw</span> (2,0) -- (2,1);
+  <span class="nt">\end{scope}</span>
+  <span class="k">\draw</span> (3,0) -- (3,1);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/030.png" alt="030" data-proofer-ignore></p><ul><li>Scoping has another interesing effect: Any changes to the clipping area are local to the scope.</ul><h3 id="transformations"><span class="mr-2">Transformations</span><a href="#transformations" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>TikZ provides numerous options that allow you to transform coordinates.<li>For example, the <code class="language-plaintext highlighter-rouge">xshift</code> option allows you to shift all subsequent points by certain amount.</ul><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="k">\draw</span> (0,0) -- (0,0.5) [xshift=2pt] (0,0) -- (0,0.5);
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/031.png" alt="031" data-proofer-ignore></p><ul><li>You can change transformation “in the middle of a path”</ul><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>[even odd rule,rounded corners=2pt,x=10pt,y=10pt]
+  <span class="k">\filldraw</span><span class="na">[fill=yellow!80!black]</span> (0,0) rectangle (1,1)
+          [xshift=5pt,yshift=5pt] (0,0) rectangle (1,1)
+                      [rotate=30] (-1,-1) rectangle (2,2);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/032.png" alt="032" data-proofer-ignore></p><h3 id="repeating-things-for-loops"><span class="mr-2">Repeating Things: For-Loops</span><a href="#repeating-things-for-loops" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="k">\foreach</span> <span class="k">\x</span> in <span class="p">{</span>1,2,3<span class="p">}</span> <span class="p">{$</span><span class="nb">x</span><span class="o">=</span><span class="nv">\x</span><span class="p">$</span>,<span class="p">}</span>
+</pre></table></code></div></div><p>The general syntax is <code class="language-plaintext highlighter-rouge">\foreach</code> <em>&lt;variable&gt;</em> <code class="language-plaintext highlighter-rouge">in</code> <code class="language-plaintext highlighter-rouge">{</code> <em>&lt;list of values&gt;</em> <code class="language-plaintext highlighter-rouge">}</code> <em>&lt;commands&gt;</em>. If the <em>&lt;commands&gt;</em> do not start with a brace, everyhing up to the next semicolon is used as <em>&lt;commands&gt;</em>.</p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>[scale=3]
+  <span class="k">\clip</span> (-0.1,-0.2) rectangle (1.1,1.51);
+  <span class="k">\draw</span><span class="na">[step=.5cm,gray,very thin]</span> (-1.4,-1.4) grid (1.4,1.4);
+  <span class="k">\filldraw</span><span class="na">[fill=green!20,draw=green!50!black]</span> (0,0) -- (3mm,0mm)
+  arc [start angle=0, end angle=30, radius=3mm] -- cycle;
+  <span class="k">\draw</span><span class="na">[-&gt;]</span> (-1.5,0) -- (1.5,0);
+  <span class="k">\draw</span><span class="na">[-&gt;]</span> (0,-1.5) -- (0,1.5);
+  <span class="k">\draw</span> (0,0) circle [radius=1cm];
+  <span class="k">\foreach</span> <span class="k">\x</span> in <span class="p">{</span>-1cm,-0.5cm,1cm<span class="p">}</span>
+    <span class="k">\draw</span> (<span class="k">\x</span>,-1pt) -- (<span class="k">\x</span>,1pt);
+  <span class="k">\foreach</span> <span class="k">\y</span> in <span class="p">{</span>-1cm,-0.5cm,0.5cm,1cm<span class="p">}</span>
+    <span class="k">\draw</span> (-1pt,<span class="k">\y</span>) -- (1pt,<span class="k">\y</span>);
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/033.png" alt="033" data-proofer-ignore></p><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="k">\foreach</span> <span class="k">\x</span> in <span class="p">{</span>-1,-0.5,1<span class="p">}</span>
+  <span class="k">\draw</span><span class="na">[xshift=\x cm]</span> (0pt,-1pt) -- (0pt,1pt);
+</pre></table></code></div></div><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="k">\tikz</span> <span class="k">\foreach</span> <span class="k">\x</span> in <span class="p">{</span>1,...,10<span class="p">}</span>
+  <span class="k">\draw</span> (<span class="k">\x</span>,0) circle (0.4cm);
+</pre></table></code></div></div><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="k">\tikz</span> <span class="k">\foreach</span> <span class="k">\x</span> in <span class="p">{</span>-1,-0.5,...,1<span class="p">}</span>
+  <span class="k">\draw</span> (<span class="k">\x</span> cm,-1pt) -- (<span class="k">\x</span> cm,1pt);
+</pre></table></code></div></div><div class="language-latex highlighter-rouge"><div class="code-header"> <span data-label-text="LaTex"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="nt">\begin{tikzpicture}</span>
+<span class="k">\foreach</span> <span class="k">\x</span> in <span class="p">{</span>1,2,...,5,7,8,...,12<span class="p">}</span>
+  <span class="k">\foreach</span> <span class="k">\y</span> in <span class="p">{</span>1,...,5<span class="p">}</span>
+  <span class="p">{</span>
+    <span class="k">\draw</span> (<span class="k">\x</span>,<span class="k">\y</span>) +(-.5,-.5) rectangle ++(.5,.5);
+    <span class="k">\draw</span> (<span class="k">\x</span>,<span class="k">\y</span>) node<span class="p">{</span><span class="k">\x</span>,<span class="k">\y</span><span class="p">}</span>;
+  <span class="p">}</span>
+<span class="nt">\end{tikzpicture}</span>
+</pre></table></code></div></div><h3 id="adding-text"><span class="mr-2">Adding Text</span><a href="#adding-text" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><img data-src="/assets/img/2022-12-01-tikz-tutorial/034.png" alt="034" data-proofer-ignore></p></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/cs/'>cs</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/tikz/" class="post-tag no-text-decoration" >tikz</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=TikZ+Tutorial+-+Looooooong&url=%2Fposts%2Ftikz-tutorial%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=TikZ+Tutorial+-+Looooooong&u=%2Fposts%2Ftikz-tutorial%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=%2Fposts%2Ftikz-tutorial%2F&text=TikZ+Tutorial+-+Looooooong" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/paper-a-charge-sharing-locking-technique-with-a-general-phase-noise-theory/">Paper A Charge-Sharing Locking Technique With a General Phase Noise Theory of Injection Locking</a><li><a href="/posts/measure-theory-01/">Measure Theory 01</a><li><a href="/posts/measure-theory-02/">Measure Theory 02</a><li><a href="/posts/measure-theory-03/">Measure Theory 03</a><li><a href="/posts/measure-theory-04/">Measure Theory 04</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/analog/">analog</a> <a class="post-tag" href="/tags/pll/">pll</a> <a class="post-tag" href="/tags/fourier-analysis/">fourier-analysis</a> <a class="post-tag" href="/tags/math/">math</a> <a class="post-tag" href="/tags/scheme/">scheme</a> <a class="post-tag" href="/tags/sicp/">sicp</a> <a class="post-tag" href="/tags/calculus/">calculus</a> <a class="post-tag" href="/tags/cs61a/">cs61a</a> <a class="post-tag" href="/tags/probability/">probability</a> <a class="post-tag" href="/tags/python/">python</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"><div class="panel-heading pl-3 pt-2 mb-2">Contents</div><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 pl-3 pr-3 pr-xl-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/cs61a-mutable-values/"><div class="card-body"> <em class="small" data-ts="1661340600" data-df="ll" > Aug 24, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>CS61A</h3><div class="text-muted small"><p> currently working on lab07 CS61A Week 6 objects have attributes today.year and method today.strftime(...) objects with good design will do what it supposed to do str(tmr - today) objects c...</p></div></div></a></div><div class="card"> <a href="/posts/higher-order-functions/"><div class="card-body"> <em class="small" data-ts="1661427000" data-df="ll" > Aug 25, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Higher Order Functions</h3><div class="text-muted small"><p> CS61A def make_withdraw(balance, password): &quot;&quot;&quot;Return a password-protected withdraw function. &amp;gt;&amp;gt;&amp;gt; w = make_withdraw(100, &#39;hax0r&#39;) &amp;gt;&amp;gt;&amp;gt; w(25, &#39;hax0r&#39;) 75 &amp;gt;&amp;...</p></div></div></a></div><div class="card"> <a href="/posts/xargs/"><div class="card-body"> <em class="small" data-ts="1661510400" data-df="ll" > Aug 26, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Xargs</h3><div class="text-muted small"><p> # put the output to the end of echo ls *str* | xargs echo # put the output between echo and hello ls *str* | xargs -I {} echo {} hello</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/intro-prob-001/" class="btn btn-outline-primary" prompt="Older"><p>Introduction to Probability 001</p></a> <a href="/posts/paper-sspll/" class="btn btn-outline-primary" prompt="Newer"><p>Paper A Low Noise Sub-Sampling PLL in Which Divider Noise is Eliminated and PD/CP Noise is Not Multiplied by $$N^2$$</p></a></div></div></div><footer class="row pl-3 pr-3"><div class="col-12 d-flex justify-content-between align-items-center text-muted pl-0 pr-0"><div class="footer-left"><p class="mb-0"> © 2023 <a href="https://twitter.com/username">Long</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/analog/">analog</a> <a class="post-tag" href="/tags/pll/">pll</a> <a class="post-tag" href="/tags/fourier-analysis/">fourier-analysis</a> <a class="post-tag" href="/tags/math/">math</a> <a class="post-tag" href="/tags/scheme/">scheme</a> <a class="post-tag" href="/tags/sicp/">sicp</a> <a class="post-tag" href="/tags/calculus/">calculus</a> <a class="post-tag" href="/tags/cs61a/">cs61a</a> <a class="post-tag" href="/tags/probability/">probability</a> <a class="post-tag" href="/tags/python/">python</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a><div id="notification" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="false"><div class="toast-header"> <button type="button" class="ml-2 ml-auto close" data-dismiss="toast" aria-label="Close"> <span aria-hidden="true">&times;</span> </button></div><div class="toast-body text-center pt-0"><p class="pl-2 pr-2 mb-3">A new version of content is available.</p><button type="button" class="btn btn-primary" aria-label="Update"> Update </button></div></div><script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No results found.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/en.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script> /* see: <https://docs.mathjax.org/en/latest/options/input/tex.html#tex-options> */ MathJax = { tex: { inlineMath: [ /* start/end delimiter pairs for in-line math */ ['$','$'], ['\\(','\\)'] ], displayMath: [ /* start/end delimiter pairs for display math */ ['$$', '$$'], ['\\[', '\\]'] ] } }; </script> <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"> </script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script>
