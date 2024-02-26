@@ -1,0 +1,27 @@
+\documentclass[tikz,convert={outfile=\jobname.svg}]{standalone}
+%\usetikzlibrary{...}% tikz package already loaded by 'tikz' option
+\usepackage[siunitx]{circuitikz}
+\begin{document}
+  \begin{circuitikz}
+    \ctikzset{tripoles/mos style/arrows}
+    \draw
+    (0,2) to [american controlled current source,l=${i_s}$,-*] (0,0)
+    (0,2) to [R,l_=${R_3}$] (0,5) node[tground]{}
+    (0,0) -- (0,-1) to [R,l=${r_m}$] (0,-2.5)
+    (0,-0.49) to[short,i=$i_s$] (0,-0.51)
+    (0,-2.5) -- (0,-3) to [R,l=${R_2}$] (0,-5) node[sground]{}
+    (0,0) -- (-1,0) to[R,l_=${R_1}$] (-4, 0) -- (-4,-3) node[sground]{}
+    %% (-1,2.25) to[american voltage source,l_=$v_x$] (-1,0)
+    (0,2.25) to[short,*-] (2,2.25) to[american voltage source,l=$v_x$] (2,-2.75)
+    (2, 1) to[short,i=$i_x$] (2,1.25)
+    (2,-2.75) to[short,-*] (0,-2.75)
+    (0,2.5) to[short,i=$i_3$] (0,2.6)
+    (0,-3.2) to[short,i=$i_2$] (0,-3.0)
+    %(-1,-0.5) to[short,i=$i_x$] (-1,-0.49)
+    %(0,-3.2) to[short,i=$i_2$] (0,-3)
+    %(-2,0) to[short,*-] (-2, 0.8) to[C,l=$C_{\mu}$] (0,0.8)
+    %(-2,0) to[C,l=${C_{\pi}}$] (-2,-1.5) node[sground]{}
+    %% (1,0.8) to[C,*-,l=${C_{L}}$] (1,-1.5) node[sground]{}
+    ;
+  \end{circuitikz}
+\end{document}

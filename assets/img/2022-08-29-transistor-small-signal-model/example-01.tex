@@ -1,0 +1,21 @@
+\documentclass[tikz,convert={outfile=\jobname.svg}]{standalone}
+%\usetikzlibrary{...}% tikz package already loaded by 'tikz' option
+\usepackage[siunitx]{circuitikz}
+\begin{document}
+  \begin{circuitikz}
+    \ctikzset{tripoles/mos style/arrows}
+    \draw
+    (0,0) node[anchor=east]{$G$} to[short,o-o] (1,0) node[anchor=north]{$+$}
+    (-1.5,-2) node[anchor=south]{$-$} to[short,o-] (9,-2)
+    (1,-2) node[anchor=south]{$-$}
+    (1,-2) node[anchor=south,yshift=0.75cm]{$v_{gs}$}
+    (-1.5,-2) node[anchor=south,yshift=0.75cm]{$v_{bs}$}
+    (4,0) to[american controlled current source,-*,l=${g_m v_{gs}}$] (4,-2) node[anchor=north]{$S$}
+    (4,0) -- (6.5,0) to[american controlled current source,*-*,l=${g_{mb} v_{bs}}$] (6.5,-2)
+    (6.5,0) -- (9,0) to[R,l=$r_o$] (9,-2)
+    (9,0) to[short,*-o] (10,0) node[anchor=west]{$D$}
+    (-1.5,0) to[short,o-] (-1.5,0) node[anchor=east]{$B$}
+    (-1.5,0) node[anchor=north]{$+$}
+    ;
+  \end{circuitikz}
+\end{document}

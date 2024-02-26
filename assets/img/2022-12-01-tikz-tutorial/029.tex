@@ -1,0 +1,8 @@
+\documentclass[tikz]{standalone}
+\begin{document}
+\usetikzlibrary {arrows.meta}
+\begin{tikzpicture}[>=Stealth]
+  \draw [->] (0,0) arc [start angle=180, end angle=30, radius=10pt];
+  \draw [<<-,very thick] (1,0) -- (1.5cm,10pt) -- (2cm,0pt) -- (2.5cm,10pt);
+\end{tikzpicture}
+\end{document}

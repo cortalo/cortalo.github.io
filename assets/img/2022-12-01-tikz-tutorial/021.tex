@@ -1,0 +1,8 @@
+\documentclass[tikz]{standalone}
+\begin{document}
+\begin{tikzpicture}[line width=5pt]
+  \draw (0,0) -- (1,0) -- (1,1) -- (0,0);
+  \draw (2,0) -- (3,0) -- (3,1) -- cycle;
+  \useasboundingbox (0,1.5); % make bounding box higher
+\end{tikzpicture}
+\end{document}
