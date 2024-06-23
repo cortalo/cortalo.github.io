@@ -1,0 +1,20 @@
+\documentclass[tikz,convert={outfile=\jobname.svg}]{standalone}
+%\usetikzlibrary{...}% tikz package already loaded by 'tikz' option
+\usepackage[siunitx]{circuitikz}
+\begin{document}
+  \begin{circuitikz}
+    \ctikzset{tripoles/mos style/arrows}
+    \draw
+    (0,0) node[npn](m1) {}
+    (m1.drain) to [R,l_=${R_2=\SI{2}{\kohm}}$] (0,3) node[tground]{}
+    (m1.source) -- (0,-1.5) node[sground]{}
+    (0,0.8) to[short,*-o] (1.5,0.8)
+    node[anchor=south]{$v_{out}$}
+    %(m1.gate) to[short,-o] (-1.5,0) node[anchor=east]{$v_{in}$}
+    (m1.gate) -- (-2,0) to[R,l_=${R_1=\SI{1}{\kohm}}$] (-5, 0) to[american voltage source,l=$v_{in}$] (-5,-1.5) node[sground]{}
+    (-2,0) to[short,*-] (-2, 0.8) to[C,l=$C_{\mu}$] (0,0.8)
+    (-2,0) to[C,l=${C_{\pi}}$] (-2,-1.5) node[sground]{}
+    (1,0.8) to[C,*-,l=${C_{L}}$] (1,-1.5) node[sground]{}
+    ;
+  \end{circuitikz}
+\end{document}
